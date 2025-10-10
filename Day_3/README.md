@@ -1,0 +1,2 @@
+- Create an nginx way to create a nginx way using imperative way 
+- Learned the syntax of yaml config file 

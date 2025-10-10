@@ -1,0 +1,16 @@
+# Deploying the nginx pod using declartive way 
+
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: nginx-pod1
+  labels: 
+    env: demo
+    type: frontend
+spec:
+  containers: 
+  - name: nginx-container
+    image: nginx
+    ports:
+    - containerPort: 80
+  
