@@ -1,12 +1,30 @@
-Task Details
-Create a Docker Architecture Diagram using the tool of your choice, either eraser.io ,draw.io or excalidraw etc
-Also, create a diagram for a sample Docker workflow
-Write a small blog about your learnings from this video and try to use the simple examples for anyone to follow along
-Share your learnings: Document your key takeaways and insights in a blog post and a social media update (mandatory).
-Make it public: Share what you learn publicly on LinkedIn or Twitter.
-Tag us and use the hashtag: Include the following in your post:
-Tag @PiyushSachdeva and @CloudOps Community (on both platforms)
-Use the hashtag #40daysofkubernetes
+1. Learned about Differences about the Virtual machines and Dockers
 
-Blog Post Focus 📝
-Clarity is key: Write your blog post clearly and concisely, making it easy for anyone to grasp the concepts, regardless of their prior Kubernetes experience.
+2. Purpose of the Docker
+ 
+3. Docker Architecture
+
+4. Creating a Docker File
+
+FROM node:18-alpine
+WORKDIR /app
+COPY . .
+RUN yarn install --production
+CMD ["node", "src/index.js"]
+EXPOSE 3000
+
+5. Hands on Exercise how to build an image, Push to registry and Pull from registry
+
+commands 
+docker build -t appname .
+docker images
+docker login  
+docker tag appname:latest username/repo:latest[ This will be docker hub]
+docker push username/repo:latest
+
+6. Learned the few more Docker Commands
+   docker logs container_name 
+   docker ps -a 
+   docker rm imagename 
+   docker rm containername 
+   
