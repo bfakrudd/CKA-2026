@@ -1,2 +1,24 @@
-- Create an nginx way to create a nginx way using imperative way 
+- Create a nginx pod using imperative way 
+    - kubectl run nginx-pod --image=nginx 
 - Learned the syntax of yaml config file 
+- Creating a nginx using declarative way 
+    - kubectl run nginx-pod --image=nginx  --dry-run=client -o yaml 
+    - kubectl run nginx-pod --image=nginx  --dry-run=client -o yaml > pod.yaml 
+    - kubectl run nginx-pod --image=nginx  --dry-run=client -o json > json.yaml 
+    - kubectl create -f pod.yaml
+- Get info about the running pods  
+    - kubectl get pods 
+    - kubectl get pods -o wide 
+    - kubectl get pods --show-labels 
+- Deleting the pods
+    - kubectl delete pod <podname>
+- Debugging commands 
+    - kubectl describe pod <podname> 
+    - kubectl edit pod podname
+- login into pod 
+    - kubectl exec -it <podname> -- bash 
+    - kubectl exec -it <podname> -- sh
+- misc commands 
+    - kubectl explain pod 
+
+    
