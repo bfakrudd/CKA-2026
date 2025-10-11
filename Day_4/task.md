@@ -1,0 +1,15 @@
+- Deployments and Replication controller and Replication set 
+- commands 
+  https://kubernetes.io/docs/reference/kubectl/quick-reference/
+-  The Deployment "nginx-deploy" is invalid: spec.selector: Invalid value: {"matchLabels":{"env":"dev"}}: field is immutable
+    - means that you're trying to modify the .spec.selector field of an existing Deployment, which is not allowed in Kubernetes after the Deployment has been created.
+    - The spec.selector defines which Pods the Deployment manages. This is immutable after creation because changing it could cause Kubernetes to associate the Deployment with a completely different set of Pods — which is unsafe.
+- How to Fix It
+    - Option 1: Delete and Recreate the Deployment
+    - Option 2: Use a New Deployment Name
+- Few important commands learned today 
+    - kubectl create deployment deploy/nginx-new --image=nginx --dry-run=client -o yaml> deploy.yaml
+    - kubectl scale --replicas=6 rs/nginx-rs 
+    - kubectl rollout history deploy/nginx-deploy 
+    - kubectl rollout undo deploy/nginx-deploy 
+    - kubectl rollout status -w deployment/nginx
