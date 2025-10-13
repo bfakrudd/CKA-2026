@@ -1,0 +1,9 @@
+- install 
+    brew install bash-completion
+- Add in ~/.bash_profile 
+    if [ -f /opt/homebrew/etc/bash_completion ]; then
+            . /opt/homebrew/etc/bash_completion
+    fi
+
+    alias k='kubectl'
+    source <(kubectl completion bash)

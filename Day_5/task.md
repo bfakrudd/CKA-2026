@@ -1,0 +1,5 @@
+- Today we are learning about services
+    - NodePort 
+    - ClusterIp
+    - ExternalName
+    - LoadBalancer 
