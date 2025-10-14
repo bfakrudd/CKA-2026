@@ -1,0 +1,7 @@
+- NameSpaces
+    - To isolate the objects 
+    - Default 
+    - kube-system
+    - Differnet RBAC and permissions 
+- hostname is specfied to respective Namespace 
+- To communicate the pods in two namespaces we have to use FQDN.    
