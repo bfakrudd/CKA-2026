@@ -1,1 +1,4 @@
-- 
+-  Scheduler is resposible for allocating pod on the nodes 
+- scheduler itself is running as pod 
+- static pods are managed by kublet
+- All the yamls of the static pods will be available in /etc/kubernetes/manifests
