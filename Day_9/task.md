@@ -12,7 +12,7 @@
 - Taints and toleration prevent scheduling unwanted pods on Tained node - Restriction 
 
 - Labeling the nodes 
-- nodeSelector - pods take the descision on which node it has to be scheduled.
+- nodeSelector - pods take the descision on which node it has to be schedule
 
 
  
