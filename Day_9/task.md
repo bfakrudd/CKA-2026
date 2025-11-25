@@ -4,10 +4,10 @@
    -   Effects:  noschedule , PreferNoschedule  noExecute 
         - noschedule - works on the newer pods 
         - preNoschedule - No Wrannty 
-        - noExecute - Workd on newer and existing pods 
+        - noExecute - Worked on newer and existing pods 
 
 - purpose:
-    - To run specific work loads 
+    - To run for specific work loads 
 
 - Taints and toleration prevent scheduling unwanted pods on Tained node - Restriction 
 
