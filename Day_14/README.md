@@ -17,3 +17,13 @@ There are four different ways that you can use a ConfigMap to configure a contai
    -  Environment variables for a container
    -  Add a file in read-only volume, for the application to read
    -  Write code to run inside the Pod that uses the Kubernetes API to read a ConfigMap
+
+- Secrets 
+
+- A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key. 
+-  Using a Secret means that you don't need to include confidential data in your application code.
+- Secrets are similar to ConfigMaps but are specifically intended to hold confidential data.
+
+Configuring the configmaps 
+
+- https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
