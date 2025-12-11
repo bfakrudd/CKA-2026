@@ -1,5 +1,6 @@
 - How SSL works 
    - https://www.youtube.com/watch?v=0yw-z6f7Mb4
+   - https://www.youtube.com/watch?v=EnY6fSng3Ew
 
 - 🔒 Symmetric Key
 
