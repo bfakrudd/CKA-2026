@@ -1,0 +1,7 @@
+{
+    "CN": "My Example Signer",
+    "key": {
+      "algo": "rsa",
+      "size": 2048
+    }
+  }
