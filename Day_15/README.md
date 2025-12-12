@@ -2,6 +2,9 @@
    - https://www.youtube.com/watch?v=0yw-z6f7Mb4
    - https://www.youtube.com/watch?v=EnY6fSng3Ew
 
+- How to self sign certificate:
+   -  https://letsencrypt.org/docs/certificates-for-localhost/
+
 - 🔒 Symmetric Key
 
 Only one key is used.
@@ -125,3 +128,9 @@ Asymmetric keys provide secure authentication & key exchange
 Symmetric keys provide fast encrypted data transfer
 
 Certificates ensure the server is genuine and trusted
+
+- chain of trusts/certificate 
+    - Root certificate 
+    - Intermediate certificate Authority 
+    - server certificate 
+
