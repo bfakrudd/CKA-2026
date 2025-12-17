@@ -22,6 +22,18 @@ spec:
         matchLabels:
           app: frontend
 ```
+- In this example, the NetworkPolicy allows ingress traffic to pods with the label "app=backend" only from pods with the label "app=frontend".
+- To apply the NetworkPolicy, you can use the kubectl command:
+
+```bash
+kubectl apply -f network-policy.yaml
+```
+- You can verify the NetworkPolicy has been created using the following command:
+
+```bash 
+kubectl get networkpolicy
+```
+- Network Policies are a powerful tool for securing communication within a Kubernetes cluster. They help enforce the principle of least privilege by restricting access between pods and services, thereby reducing the attack surface and improving the overall security posture of your applications.
 
 
 
