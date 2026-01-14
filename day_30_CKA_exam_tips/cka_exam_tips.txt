@@ -1,0 +1,39 @@
+CKA Exam Preparation Guide: https://cloudchamp.notion.site/How-I-Passed-my-CKA-Exam-55fef633b454438aadc54a7261312ec9
+
+1. Introduction
+   - Overview of the Certified Kubernetes Administrator (CKA) certification
+   - Importance of CKA certification in the IT industry
+2. Study Resources
+   - Recommended books and online courses
+   - Official Kubernetes documentation
+   - Practice exams and labs
+3. Exam Tips and Strategies
+   - Time management during the exam
+   - Understanding the exam format and question types
+   - Tips for answering performance-based questions
+4. Hands-on Practice
+   - Setting up a local Kubernetes cluster for practice
+   - Common tasks to practice (e.g., deploying applications, managing nodes, troubleshooting)
+   - Using Kubernetes tools (kubectl, kubeadm, etc.)
+5. Key Topics to Focus On
+   - Cluster architecture and components
+   - Installation and configuration of Kubernetes
+   - Networking and storage in Kubernetes
+   - Security best practices
+   - Monitoring and logging
+   - Troubleshooting common issues
+    - Sample exam questions and answers
+         The number of questions: 16
+         The number of tasks in each question are increased now. 
+         Most of the questions were from Configuration and troubleshootings. 
+         The 2 hours time seems very less. 
+         The biggest challenge i faced during CKA was that even documentation doesn't contain the info about the installations they ask us to perform. 
+         Highly disatisfied with CKA experience. Even if you revise the networking and troubleshooting again and again still it is difficult to 
+         identify the root cause of the problem in the given time. 
+         Note:- I was able to complete 9 questions. for other 7 questions, 
+         either i could complete just one task or couldn't even start at all.
+6. Final Preparations
+   - Review key concepts and commands
+   - Get a good night's sleep before the exam
+   - Ensure a stable internet connection and a quiet environment for the exam
+

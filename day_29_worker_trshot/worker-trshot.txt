@@ -1,0 +1,159 @@
+Troubleshooting guide for worker nodes in a Kubernetes cluster:
+
+1. **Node Not Ready**
+   - Check node status:
+     ```
+     kubectl get nodes
+     ```
+   - Inspect node conditions:
+     ```
+     kubectl describe node <node-name>
+     ```
+   - Verify kubelet service is running:
+     ```
+     systemctl status kubelet
+     ```
+   - Check for network issues:
+     ```
+     ping <master-node-ip>
+     ```
+    - Review kubelet logs:
+      ```
+        journalctl -u kubelet
+        ```
+2. **Pods Not Scheduling**
+    - Check pod status:
+      ```
+      kubectl get pods -o wide
+      ```
+    - Describe unscheduled pods:
+      ```
+      kubectl describe pod <pod-name>
+      ```
+    - Verify node resources (CPU, memory):
+      ```
+      kubectl describe node <node-name>
+      ```
+    - Check for taints and tolerations:
+      ```
+      kubectl get nodes -o json | jq '.items[] | {name: .metadata.name, taints: .spec.taints}'
+      ```   
+3. **Network Issues**
+    - Verify CNI plugin is functioning:
+      ```
+      kubectl get pods -n kube-system
+      ```
+    - Check network policies:
+      ```
+      kubectl get networkpolicies --all-namespaces
+      ```
+    - Test pod-to-pod communication:
+      ```
+      kubectl exec -it <pod-name> -- ping <other-pod-ip>
+      ```
+    - Review CNI plugin logs (e.g., Flannel, Calico):
+      ```
+      journalctl -u <cni-plugin-service>
+      ```
+4. **High Resource Usage**
+    - Monitor node resource usage:
+      ```
+      top
+      ```
+    - Check pod resource requests and limits:
+      ```
+      kubectl describe pod <pod-name>
+      ```
+    - Use metrics server to get resource usage:
+      ```
+      kubectl top nodes
+      kubectl top pods --all-namespaces
+      ```
+    - Identify resource-hungry pods:
+      ```
+      kubectl get pods --sort-by=.spec.containers[0].resources.requests.cpu
+      ```   
+5. **Disk Pressure**
+    - Check disk usage:
+      ```
+      df -h
+      ```
+    - Identify large files/directories:
+      ```
+      du -sh /* | sort -rh | head -n 10
+      ```
+    - Clean up unused Docker images and containers:
+      ```
+      docker system prune -a
+      ```
+    - Review kubelet disk pressure logs:
+      ```
+      journalctl -u kubelet | grep "disk pressure"
+      ```  
+6. **Kubelet Issues**
+    - Check kubelet logs for errors:
+      ```
+      journalctl -u kubelet
+      ```
+    - Verify kubelet configuration:
+      ```
+      cat /var/lib/kubelet/config.yaml
+      ```
+    - Restart kubelet service:
+      ```
+      systemctl restart kubelet
+      ```
+    - Ensure correct node registration with the master:
+      ```
+      kubectl get nodes
+      ```
+7. **Container Runtime Issues**
+    - Check container runtime status (e.g., Docker, containerd):
+      ```
+      systemctl status docker
+      ```
+    - Review container runtime logs:
+      ```
+      journalctl -u docker
+      ```
+    - Verify container images are pulling correctly:
+      ```
+      docker pull <image-name>
+      ```
+    - Restart container runtime service:
+      ```
+      systemctl restart docker
+      ```
+8. **Time Synchronization Issues**
+    - Check system time:
+      ```
+      date
+      ```
+    - Verify NTP service status:
+      ```
+      systemctl status ntpd
+      ```
+    - Sync time manually:
+      ```
+      ntpdate <ntp-server>
+      ```
+    - Ensure time synchronization is consistent across all nodes:
+      ```
+      chronyc sources
+      ```
+9. **Logs and Monitoring**
+    - Use centralized logging solutions (e.g., ELK, Fluentd) to aggregate logs.
+    - Monitor node health using tools like Prometheus and Grafana.
+    - Set up alerts for critical issues (e.g., node down, high resource usage).
+    - Regularly review logs for anomalies:
+      ```
+      journalctl -u kubelet
+      journalctl -u docker
+      ```
+10. **General Tips**
+    - Keep Kubernetes and all components up to date.
+    - Regularly back up important configurations and data.
+    - Document any changes made to the cluster for future reference.
+    - Engage with the Kubernetes community for support and best practices.
+By following this troubleshooting guide, you can systematically identify and resolve common issues encountered with worker nodes in a Kubernetes cluster.
+

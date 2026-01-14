@@ -1,0 +1,42 @@
+pod priority is a concept in Kubernetes that allows you to assign different levels of importance to pods. 
+This helps the Kubernetes scheduler make decisions about which pods to evict when resources are scarce. 
+Pods with higher priority are less likely to be evicted compared to those with lower priority.
+
+To set pod priority, you need to define a PriorityClass resource and then assign that priority class to your pods.
+Here’s how you can create a PriorityClass and assign it to a pod:
+1. Create a PriorityClass YAML file (e.g., priorityclass.yaml):
+
+```yaml
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: high-priority
+value: 1000
+globalDefault: false
+description: "This priority class is for high priority pods."
+```
+2. Apply the PriorityClass to your Kubernetes cluster:
+
+```bash
+kubectl apply -f priorityclass.yaml
+```
+3. Assign the PriorityClass to your pod by specifying it in the pod's YAML file (e.g., pod.yaml):
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-high-priority-pod
+spec:
+    priorityClassName: high-priority
+    containers:
+    - name: my-container
+        image: my-image
+    ```
+4. Apply the pod configuration to create the pod:
+```bash
+kubectl apply -f pod.yaml
+```
+With these steps, you have successfully created a PriorityClass and assigned it to a pod. The pod will now have a higher priority compared to pods without a specified priority class or with lower priority classes.
+Remember to monitor your cluster and adjust priorities as needed based on your workload requirements.
+

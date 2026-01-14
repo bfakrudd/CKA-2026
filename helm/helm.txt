@@ -1,0 +1,202 @@
+what is helm?
+Helm is a package manager for Kubernetes, which is an open-source platform for managing containerized applications. 
+Helm simplifies the process of deploying and managing applications on Kubernetes by allowing users to define, install, 
+and upgrade complex applications using "charts."
+
+why we required helm?
+Helm is required for several reasons:
+1. Simplified Deployment: Helm allows users to package applications and their dependencies into charts, 
+making it easier to deploy complex applications with a single command.
+2. Version Control: Helm charts can be versioned, 
+allowing users to easily roll back to previous versions of an application if needed.
+3. Reusability: Helm charts can be reused across different environments,
+    reducing duplication of effort and ensuring consistency.
+4. Dependency Management: Helm handles dependencies between different components of an application,
+making it easier to manage complex applications.
+5. Community Support: Helm has a large and active community that provides a wide range of pre-built charts for popular applications,
+making it easier to get started with Kubernetes.
+6. Configuration Management: Helm allows users to customize application configurations through values files,
+making it easier to manage different environments (e.g., development, staging, production).
+Overall, Helm streamlines the process of deploying and managing applications on Kubernetes,
+making it a valuable tool for developers and DevOps teams.
+
+how helm works?
+Helm works by using a client-server architecture, where the Helm client interacts with the Helm server (Tiller) running inside the Kubernetes cluster. 
+However, starting from Helm 3, Tiller has been removed, and Helm now interacts directly with the Kubernetes API server.
+
+Here is a high-level overview of how Helm works:
+1. Charts: Helm uses charts, which are packages of pre-configured Kubernetes resources.
+    A chart contains all the necessary files to deploy an application, including templates for Kubernetes manifests,
+    configuration values, and metadata.
+2. Installing Charts: To install an application, users run the `helm install` command,
+    specifying the chart they want to deploy. Helm processes the chart templates,
+    substitutes configuration values, and generates the necessary Kubernetes manifests.
+3. Kubernetes API Interaction: Helm then interacts with the Kubernetes API server to create the resources defined in the 
+generated manifests.
+4. Managing Releases: Each installation of a chart creates a "release," which is a specific instance of the application running in the cluster.
+    Helm keeps track of releases, allowing users to upgrade, rollback, or uninstall applications easily.
+5. Upgrading and Rolling Back: Users can upgrade an application by running the `helm upgrade` command, 
+specifying a new version of the chart or updated configuration values.
+    If something goes wrong, users can roll back to a previous release using the `helm rollback` command.
+6. Repositories: Helm charts can be stored in repositories, which are collections of charts that can be shared and distributed.
+    Users can add repositories using the `helm repo add` command and search for charts using `helm search`.
+Overall, Helm simplifies the process of deploying and managing applications on Kubernetes by providing a structured way to package,
+deploy, and manage applications using charts.
+
+what are helm charts?
+Helm charts are packages of pre-configured Kubernetes resources that define how to deploy and manage applications on a Kubernetes cluster.
+A Helm chart contains all the necessary files and templates to create a complete application deployment,
+including Kubernetes manifests, configuration values, and metadata.
+A typical Helm chart consists of the following components:
+1. Chart.yaml: This file contains metadata about the chart, such as its name, version, description, and dependencies.
+2. values.yaml: This file contains default configuration values for the chart. Users can override these values during installation or upgrade to customize the deployment.
+3. templates/: This directory contains Kubernetes manifest templates that define the resources to be created in the cluster.
+    These templates use Go templating syntax to allow for dynamic configuration based on the values provided.
+4. charts/: This directory can contain other charts that are dependencies of the main chart.
+5. README.md: This file provides documentation and instructions for using the chart.
+Helm charts can be stored in repositories, which are collections of charts that can be shared and distributed.
+Users can install charts from repositories using the Helm client, making it easy to deploy complex applications with a single command.
+Overall, Helm charts provide a structured way to package, deploy, and manage applications on Kubernetes,
+making it easier for developers and DevOps teams to work with containerized applications.
+how to install helm?
+To install Helm, follow these steps based on your operating system:
+1. Install Helm on macOS:
+   - Using Homebrew:
+     ```
+     brew install helm
+     ```
+2. Install Helm on Windows:
+    - Using Chocolatey:
+      ```
+      choco install kubernetes-helm
+      ```
+3. Install Helm on Linux:
+    - Using the script:
+      ```
+      curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+      ```
+    - Alternatively, you can download the binary from the Helm GitHub releases page:
+      ```
+      wget https://get.helm.sh/helm-v3.x.x-linux-amd64.tar.gz
+      tar -zxvf helm-v3.x.x-linux-amd64.tar.gz
+      sudo mv linux-amd64/helm /usr/local/bin/helm
+      ```
+4. Verify the installation:
+    ```
+    helm version
+    ```
+This command should display the installed Helm version, confirming that Helm has been successfully installed on your system.
+After installing Helm, you can start using it to manage your Kubernetes applications by adding repositories, installing charts, and managing releases.
+Remember to replace `v3.x.x` with the latest version number available at the time of installation.
+
+how to create helm chart?
+To create a Helm chart, follow these steps:
+1. Install Helm: Ensure that Helm is installed on your system. You can verify the installation by running:
+   ```
+   helm version
+   ```
+2. Create a New Chart: Use the `helm create` command to generate a new Helm chart template. Replace `mychart` with your desired chart name:
+   ```
+    helm create mychart
+    ```
+    This command creates a directory named `mychart` with the necessary files and structure for a Helm chart.
+3. Explore the Chart Structure: Navigate to the newly created chart directory:
+    ```
+    cd mychart
+    ```
+    The chart structure includes:
+    - `Chart.yaml`: Contains metadata about the chart.
+    - `values.yaml`: Contains default configuration values.
+    - `templates/`: Directory containing Kubernetes manifest templates.
+    - `charts/`: Directory for chart dependencies.
+    - `README.md`: Documentation for the chart.
+4. Customize the Chart: Modify the files in the chart directory to define your application:
+    - Update `Chart.yaml` with relevant metadata.
+    - Edit `values.yaml` to set default configuration values.
+    - Modify the templates in the `templates/` directory to define the Kubernetes resources needed for your application.
+5. Package the Chart: Once you have customized the chart, you can package it into a `.tgz` file using the following command:
+    ```
+    helm package .
+    ```
+    This command creates a packaged chart file (e.g., `mychart-0.1.0.tgz`) in the current directory.
+6. Install the Chart: You can install the chart on your Kubernetes cluster using the `helm install` command. Replace `myrelease` with your desired release name:
+    ```
+    helm install myrelease ./mychart
+    ```
+    This command deploys the chart to your Kubernetes cluster.
+7. Verify the Installation: Check the status of your release using:
+    ```
+    helm status myrelease
+    ```
+This command provides information about the deployed resources and their status.
+By following these steps, you can create and deploy a Helm chart for your application on a Kubernetes cluster.
+how to add helm repo?
+To add a Helm repository, follow these steps:
+1. Open your terminal or command prompt.
+2. Use the `helm repo add` command to add a new Helm repository. Replace `repo-name` with a name you want to assign to the repository and `repo-url` with the URL of the Helm repository you want to add. For example:
+   ```
+   helm repo add repo-name repo-url
+   ```
+   Example:
+   ```
+   helm repo add stable https://charts.helm.sh/stable
+   ```
+3. After adding the repository, it's a good practice to update your local Helm chart repository cache to ensure you have the latest information about the charts available in the added repositories. You can do this by running:
+   ```
+    helm repo update
+    ```
+4. You can verify that the repository has been added successfully by listing all the configured Helm repositories using:
+    ```
+    helm repo list
+    ```
+    This command will display a list of all the Helm repositories you have added, along with their URLs.
+By following these steps, you can easily add a Helm repository and access the charts available in that repository for installation and management on your Kubernetes cluster.
+how to install helm chart?
+To install a Helm chart, follow these steps:
+1. Ensure Helm is Installed: Make sure you have Helm installed on your system. You can verify this by running:
+   ```
+   helm version
+   ```
+2. Add a Helm Repository (if needed): If the chart you want to install is in a Helm repository, you may need to add that repository first. Use the following command to add a repository:
+   ```
+    helm repo add repo-name repo-url
+    ```
+    Replace `repo-name` with a name for the repository and `repo-url` with the URL of the Helm repository.
+    Example:
+    ```
+    helm repo add stable https://charts.helm.sh/stable
+    ```
+3. Update Helm Repositories: After adding a repository, update your local Helm chart repository cache to ensure you have the latest information about the charts:
+    ```
+    helm repo update
+    ```
+4. Search for the Chart (optional): You can search for the chart you want to install using the `helm search` command:
+    ```
+    helm search repo chart-name
+    ```
+    Replace `chart-name` with the name of the chart you are looking for.
+5. Install the Chart: Use the `helm install` command to install the chart. Replace `release-name` with a name for your release and `chart-name` with the name of the chart you want to install. If the chart is from a repository, use the format `repo-name/chart-name`. For example:
+    ```
+    helm install release-name repo-name/chart-name
+    ```
+    Example:
+    ```
+    helm install my-release stable/nginx
+    ```
+6. Customize Installation (optional): You can customize the installation by providing a custom `values.yaml` file or setting specific values using the `--set` flag. For example:
+    ```
+    helm install my-release stable/nginx --values custom-values.yaml
+    ```
+    or
+    ```
+    helm install my-release stable/nginx --set key1=value1,key2=value2
+    ```
+7. Verify the Installation: After installing the chart, you can check the status of your release using:
+    ```
+    helm status release-name
+    ```
+This command provides information about the deployed resources and their status.
+By following these steps, you can successfully install a Helm chart on your Kubernetes cluster.
+
+
+

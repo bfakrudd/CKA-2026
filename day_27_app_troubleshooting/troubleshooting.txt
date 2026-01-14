@@ -1,0 +1,232 @@
+Trouble shooting steps for common issues in kubernetes:
+
+Kubernetes Cluster Troubleshooting Commands
+
+check kubectl configuration:
+1. Verify kubectl is installed:
+   ```bash
+   kubectl version --client
+   ```
+2. Check the current context:
+   ```bash
+    kubectl config current-context
+    ```
+3. List all contexts:
+    ```bash
+    kubectl config get-contexts
+    ```
+4. Switch context if necessary:
+    ```bash
+    kubectl config use-context <context-name>
+    ```
+5. Test connectivity to the cluster:
+    ```bash
+    kubectl cluster-info
+    ``` 
+Check node status:
+1. List all nodes and their status:
+   ```bash
+   kubectl get nodes
+   ```
+2. Describe a specific node for more details:
+   ```bash
+    kubectl describe node <node-name>
+    ```
+3. Check node resource usage:
+    ```bash
+    kubectl top nodes
+    ```
+Check pod status:
+1. List all pods in the default namespace:
+   ```bash
+   kubectl get pods
+   ```
+2. List pods in a specific namespace:
+   ```bash
+    kubectl get pods -n <namespace>
+    ```
+3. Describe a specific pod for more details:
+    ```bash
+     kubectl describe pod <pod-name> -n <namespace>
+     ```
+4. Check pod logs:
+
+    ```bash
+    kubectl logs <pod-name> -n <namespace>
+    ```
+5. Check logs for a specific container in a pod:
+    ```bash
+    kubectl logs <pod-name> -c <container-name> -n <namespace>
+    ```
+6. Stream logs in real-time:
+    ```bash
+    kubectl logs -f <pod-name> -n <namespace>
+    ```
+Check deployment status:
+1. List all deployments in the default namespace:
+   ```bash
+   kubectl get deployments
+   ```
+2. List deployments in a specific namespace:
+   ```bash
+    kubectl get deployments -n <namespace>
+    ```
+3. Describe a specific deployment for more details:
+    ```bash
+     kubectl describe deployment <deployment-name> -n <namespace>
+     ```
+4. Check rollout status of a deployment:
+    ```bash
+    kubectl rollout status deployment/<deployment-name> -n <namespace>
+    ```
+5. Rollback a deployment to a previous revision:
+    ```bash
+    kubectl rollout undo deployment/<deployment-name> -n <namespace>
+    ```
+Check service status:
+1. List all services in the default namespace:
+   ```bash
+   kubectl get services
+   ```
+2. List services in a specific namespace:
+   ```bash
+    kubectl get services -n <namespace>
+    ```
+3. Describe a specific service for more details:
+    ```bash
+     kubectl describe service <service-name> -n <namespace>
+     ```
+4. Check endpoints associated with a service:
+    ```bash
+    kubectl get endpoints <service-name> -n <namespace>
+    ```
+Check ingress status:
+1. List all ingresses in the default namespace:
+   ```bash
+   kubectl get ingress
+   ```
+2. List ingresses in a specific namespace:
+   ```bash
+    kubectl get ingress -n <namespace>
+    ```
+3. Describe a specific ingress for more details:
+    ```bash
+     kubectl describe ingress <ingress-name> -n <namespace>
+     ```
+4. Check ingress controller logs:
+    ```bash
+    kubectl logs <ingress-controller-pod-name> -n <ingress-namespace>
+    ```
+Check config maps and secrets:
+1. List all config maps in the default namespace:
+   ```bash
+   kubectl get configmaps
+   ```
+2. List config maps in a specific namespace:
+   ```bash
+    kubectl get configmaps -n <namespace>
+    ```
+3. Describe a specific config map for more details:
+    ```bash
+     kubectl describe configmap <configmap-name> -n <namespace>
+     ```
+4. List all secrets in the default namespace:
+    ```bash
+    kubectl get secrets
+    ```
+5. List secrets in a specific namespace:
+    ```bash
+    kubectl get secrets -n <namespace>
+    ```
+6. Describe a specific secret for more details:
+    ```bash
+    kubectl describe secret <secret-name> -n <namespace>
+    ```
+Check persistent volumes and claims:
+1. List all persistent volumes:
+   ```bash
+   kubectl get pv
+   ```
+2. List all persistent volume claims in the default namespace:
+   ```bash
+    kubectl get pvc
+    ```
+3. List persistent volume claims in a specific namespace:
+    ```bash
+    kubectl get pvc -n <namespace>
+    ```
+4. Describe a specific persistent volume for more details:
+    ```bash
+    kubectl describe pv <pv-name>
+    ```
+5. Describe a specific persistent volume claim for more details:
+    ```bash
+    kubectl describe pvc <pvc-name> -n <namespace>
+    ```
+Check cluster events:
+1. List recent events in the default namespace:
+   ```bash
+   kubectl get events --sort-by=.metadata.creationTimestamp
+   ```
+2. List recent events in a specific namespace:
+   ```bash
+    kubectl get events -n <namespace> --sort-by=.metadata.creationTimestamp
+    ```
+3. Describe a specific event for more details:
+    ```bash
+    kubectl describe event <event-name> -n <namespace>
+    ```
+Check cluster resource usage(Metrics Server must be installed):
+1. Check overall cluster resource usage:
+   ```bash
+   kubectl top nodes
+   ```
+2. Check resource usage of pods in the default namespace:
+   ```bash
+    kubectl top pods
+    ```
+3. Check resource usage of pods in a specific namespace:
+    ```bash 
+    kubectl top pods -n <namespace>
+    ```
+Check network issues (Networl plugin must be installed, Example Calico or Cilium):
+1. Verify pod-to-pod communication using ping (requires busybox or similar pod):
+   ```bash
+   kubectl exec -it <pod-name> -n <namespace> -- ping <target-pod-ip>
+   ```
+2. Check network policies applied to a namespace:
+   ```bash
+    kubectl get networkpolicy -n <namespace>
+    ```
+3. Describe a specific network policy for more details:
+    ```bash
+    kubectl describe networkpolicy <networkpolicy-name> -n <namespace>
+    ```
+Check kubelet status on nodes:
+1. SSH into the node and check kubelet status:
+   ```bash
+   systemctl status kubelet
+   ```
+2. View kubelet logs for troubleshooting:
+   ```bash
+    journalctl -u kubelet
+    ```
+Check API server health:
+1. Check the health of the API server:
+   ```bash
+   kubectl get --raw='/healthz'
+   ```
+2. Check specific health endpoints:
+   ```bash
+    kubectl get --raw='/healthz/etcd'
+    ```
+
+
+
+
+
+
+
+
+
+

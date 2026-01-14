@@ -1,0 +1,16 @@
+ingress controllers are thirdparty resources that manage external access to services within a Kubernetes cluster, typically HTTP and HTTPS traffic. They provide advanced routing capabilities, load balancing, SSL termination, and more. 
+Ingress controllers monitor Ingress resources and configure the underlying load balancer or proxy server accordingly.
+
+Some popular ingress controllers include:
+1. NGINX Ingress Controller: One of the most widely used ingress controllers, it leverages the NGINX web server to provide robust routing and load balancing features.
+2. Traefik: A dynamic ingress controller that automatically discovers services and provides features like SSL termination, load balancing, and middleware support.
+3. HAProxy Ingress: An ingress controller based on the HAProxy load balancer, known for its high performance and reliability.
+4. Istio Ingress Gateway: Part of the Istio service mesh, it provides advanced traffic management features along with ingress capabilities.
+5. Ambassador: An API gateway built on Envoy Proxy, designed for microservices and Kubernetes environments, offering features like rate limiting, authentication, and observability.
+To deploy an ingress controller, you typically need to:
+1. Install the ingress controller using Helm charts, YAML manifests, or operator-based installations.
+2. Create Ingress resources that define the routing rules for your services.
+3. Configure DNS and SSL certificates as needed for secure access.
+Ingress controllers play a crucial role in managing external access to applications running in Kubernetes clusters, ensuring efficient and secure traffic handling.
+
+

@@ -1,0 +1,26 @@
+CNI in kubernetes stands for Container Network Interface. It is a specification and set of libraries for writing plugins to configure network interfaces in Linux containers. CNI is used to manage the networking aspects of containers, such as assigning IP addresses, setting up routes, and configuring network policies.
+In Kubernetes, CNI plugins are responsible for providing network connectivity to pods. When a pod is created, the Kubernetes kubelet calls the CNI plugin to set up the network for that pod. The CNI plugin handles tasks such as allocating an IP address from a predefined pool, creating virtual network interfaces, and applying any necessary network policies.
+There are several popular CNI plugins available for Kubernetes, 
+each with its own features and capabilities. Some of the widely used CNI plugins include:  
+1. Calico: Provides networking and network security solutions for containers, virtual machines, and native host-based workloads.
+2. Flannel: A simple and easy-to-use CNI plugin that provides a layer 3 network fabric for Kubernetes.
+3. Weave Net: A CNI plugin that offers a simple way to create a virtual network that connects Docker containers across multiple hosts.
+4. Cilium: Focuses on providing secure network connectivity and load balancing for microservices using eBPF technology.
+5. Canal: A combination of Flannel and Calico, providing both networking and network policy capabilities.
+CNI plugins can be chosen based on the specific networking requirements of a Kubernetes cluster, such as performance, security, and ease of use.
+To use a CNI plugin in a Kubernetes cluster, it typically needs to be installed and configured on each node in the cluster. 
+This can be done using various methods, 
+such as applying YAML manifests or using Helm charts, depending on the specific CNI plugin being used.
+Overall, CNI plays a crucial role in the Kubernetes ecosystem by enabling flexible and efficient networking for containerized applications.
+
+- runc in kubernetes is a lightweight, portable container runtime that is used to run containers in a Kubernetes cluster. 
+
+- It is an implementation of the Open Container Initiative (OCI) runtime specification, which defines how to run containers in a standardized way.
+runc is responsible for creating and managing the lifecycle of containers, including tasks such as starting, stopping, and deleting containers. 
+
+- It provides a low-level interface for interacting with container processes and their resources, such as CPU, memory, and network.
+
+- In Kubernetes, runc is often used as the default container runtime for running pods. When a pod is created, 
+the Kubernetes kubelet interacts with runc to create and manage the containers that make up the pod. 
+runc handles the necessary operations to set up the container environment, 
+including setting up namespaces, cgroups, and other Linux kernel features required for containerization.

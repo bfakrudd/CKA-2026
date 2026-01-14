@@ -1,0 +1,48 @@
+Kustomize is a tool for customizing Kubernetes configurations. It allows users to create and manage Kubernetes manifests in a more flexible and 
+reusable way by using a concept called "overlays" to modify base configurations without altering the original files.
+
+Here are some key features of Kustomize:
+1. **Base and Overlays**: Kustomize uses a base configuration that can be modified by overlays. 
+This allows users to create different variations of the same base configuration for different environments (e.g., development, staging, production).
+2. **Resource Customization**: Users can customize resources by adding, modifying, or removing fields in the Kubernetes manifests without changing 
+the original files.
+3. **Patching**: Kustomize supports strategic merging and JSON patches, 
+allowing users to apply changes to specific fields in the manifests.
+4. **Generators**: Kustomize can generate resources like ConfigMaps and Secrets from files or literals, 
+making it easier to manage configuration data.
+5. **Built-in Functions**: Kustomize provides built-in functions for common tasks, 
+such as name prefixing/suffixing, label management, and namespace setting.
+6. **No Templating Language**: Unlike other tools, Kustomize does not use a templating language,
+    making it simpler to understand and use for those familiar with standard Kubernetes manifests.
+To use Kustomize, you typically create a `kustomization.yaml` file that defines the resources to be included,
+patches to be applied, and any generators to be used. You can then run Kustomize commands to build the final manifests for deployment to a Kubernetes cluster.
+Example `kustomization.yaml` file:
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - deployment.yaml
+  - service.yaml
+patchesStrategicMerge:
+    - patch.yaml
+configMapGenerator:
+    - name: my-config
+        files:
+        - config.properties
+namespace: my-namespace
+namePrefix: dev-
+labels:
+    app: my-app
+```
+In this example, the `kustomization.yaml` file specifies two resources (`deployment.yaml` and `service.yaml`),
+applies a strategic merge patch (`patch.yaml`), generates a ConfigMap from a properties file,
+sets the namespace to `my-namespace`, adds a prefix `dev-` to resource names, and applies a label `app: my-app` to all resources.   
+To build the final manifests, you would run the following command:
+```bash
+kustomize build .
+```
+This command processes the `kustomization.yaml` file in the current directory and outputs the customized Kubernetes manifests.
+Kustomize is a tool for customizing Kubernetes configurations. It allows users to create and manage Kubernetes manifests in a more flexible and
+reusable way by using a concept called "overlays" to modify base configurations without altering the original files.
+
+

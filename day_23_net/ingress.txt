@@ -1,0 +1,30 @@
+Ingress in kubernetes is a resource that manages external access to services within a cluster, 
+typically HTTP and HTTPS traffic. 
+It provides a way to define rules for routing traffic to different services based on the request's host or path. 
+Ingress can also handle SSL termination, load balancing, and name-based virtual hosting.
+Here is an example of a simple Ingress resource definition in YAML:
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+spec:
+  ingressClassName: nginx-example
+  rules:
+  - http:
+      paths:
+      - path: /testpath
+        pathType: Prefix
+        backend:
+          service:
+            name: test
+            port:
+              number: 80
+In this example, the Ingress resource named "minimal-ingress" routes HTTP traffic with the path "/testpath" to a backend service named "test" on port 80.
+To apply this Ingress resource to your Kubernetes cluster, you would typically save the YAML definition to a file (e.g., ingress.yaml) and then use the kubectl command-line tool to create the resource:
+kubectl apply -f ingress.yaml
+Make sure you have an Ingress controller (like NGINX, Traefik, etc.) deployed in your cluster to handle the Ingress resources and route the traffic accordingly.
+Remember to customize the Ingress resource according to your specific requirements, such as adding host rules, TLS settings, or additional paths as needed.
+
+
+
